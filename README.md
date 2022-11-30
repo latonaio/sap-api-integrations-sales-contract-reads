@@ -1,5 +1,5 @@
 # sap-api-integrations-sales-contract-reads  
-sap-api-integrations-sales-contract-reads は、外部システム(特にエッジコンピューティング環境)をSAPと統合することを目的に、SAP API で 販売基本契約データを取得するマイクロサービスです。    
+sap-api-integrations-sales-contract-reads は、外部システム(特にエッジコンピューティング環境)をSAPと統合することを目的に、SAP API で 販売契約データを取得するマイクロサービスです。    
 sap-api-integrations-sales-contract-reads には、サンプルのAPI Json フォーマットが含まれています。   
 sap-api-integrations-sales-contract-reads は、オンプレミス版である（＝クラウド版ではない）SAPS4HANA API の利用を前提としています。クラウド版APIを利用する場合は、ご注意ください。   
 https://api.sap.com/api/OP_API_SALES_CONTRACT_SRV_0001/overview  
@@ -24,19 +24,19 @@ sap-api-integrations-sales-contract-reads が対応する APIサービス は、
 ## 本レポジトリ に 含まれる API名
 sap-api-integrations-sales-contract-reads には、次の API をコールするためのリソースが含まれています。  
 
-* A_SalesContract（販売基本契約 - ヘッダ）※販売基本契約の詳細データを取得するために、ToHeaderPartner、ToItem、ToItemPricingElement、ToItemScheduleLine、と合わせて利用されます。
-* A_SalesContractItem（販売基本契約 - 明細）※販売基本契約明細の詳細データを取得するために、ToItemPricingElement、と合わせて利用されます。
-* ToHeaderPartner（販売基本契約 - ヘッダ取引先）
-* ToItem（販売基本契約 - 明細）
-* ToItemPricingElement（販売基本契約 - 明細価格条件）
+* A_SalesContract（販売契約 - ヘッダ）※販売契約の詳細データを取得するために、ToHeaderPartner、ToItem、ToItemPricingElement、ToItemScheduleLine、と合わせて利用されます。
+* A_SalesContractItem（販売契約 - 明細）※販売契約明細の詳細データを取得するために、ToItemPricingElement、と合わせて利用されます。
+* ToHeaderPartner（販売契約 - ヘッダ取引先）
+* ToItem（販売契約 - 明細）
+* ToItemPricingElement（販売契約 - 明細価格条件）
 
 ## API への 値入力条件 の 初期値
 sap-api-integrations-sales-contract-reads において、API への値入力条件の初期値は、入力ファイルレイアウトの種別毎に、次の通りとなっています。  
 
 ### SDC レイアウト
 
-* inoutSDC.SalesContract.SalesContract（販売基本契約番号）
-* inoutSDC.SalesContract.SalesContractItem.SalesContractItem（販売基本契約明細）
+* inoutSDC.SalesContract.SalesContract（販売契約番号）
+* inoutSDC.SalesContract.SalesContractItem.SalesContractItem（販売契約明細）
 
 ## SAP API Bussiness Hub の API の選択的コール
 
@@ -97,7 +97,7 @@ func (c *SAPAPICaller) AsyncGetSalesContract(salesContract, salesContractItem st
 ```
 ## Output  
 本マイクロサービスでは、[golang-logging-library](https://github.com/latonaio/golang-logging-library) により、以下のようなデータがJSON形式で出力されます。  
-以下の sample.json の例は、SAP 販売基本契約 の ヘッダデータ が取得された結果の JSON の例です。  
+以下の sample.json の例は、SAP 販売契約 の ヘッダデータ が取得された結果の JSON の例です。  
 以下の項目のうち、"SalesContract" ～ "to_Item" は、/SAP_API_Output_Formatter/type.go 内 の Type Header {} による出力結果です。"cursor" ～ "time"は、golang-logging-library による 定型フォーマットの出力結果です。  
 
 ```
